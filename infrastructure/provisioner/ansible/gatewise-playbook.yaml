@@ -48,10 +48,12 @@
       name: ubuntu
       groups: docker
       append: true
+    register: ubuntu_docker_group
   - name: reboot hosts
     reboot:
       msg: reboot initiated by Ansible
       test_command: whoami
+    when: ubuntu_docker_group.changed == true
 
 - name: 'Config host'
   hosts: all
