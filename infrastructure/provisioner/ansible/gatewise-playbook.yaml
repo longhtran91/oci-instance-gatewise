@@ -121,5 +121,5 @@
     become: true
     service:
       name: gatewise
-      state: started
+      state: restarted
       enabled: true
