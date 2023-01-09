@@ -55,6 +55,20 @@
       test_command: whoami
     when: ubuntu_docker_group.changed == true
 
+- name: 'Config Wireguard'
+  hosts: all
+  become: true
+  tasks:
+  - name: Install wireguard
+    apt:
+      pkg:
+      - wireguard
+  - name: config aws default profile with admin role arn
+    template:
+      src: ./templates/wireguard/
+      dest: /etc/wireguard/
+      mode: '600'
+
 - name: 'Config host'
   hosts: all
   tasks:

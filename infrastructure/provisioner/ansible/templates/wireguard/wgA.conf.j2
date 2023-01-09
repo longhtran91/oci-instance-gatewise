@@ -1,0 +1,10 @@
+[Interface]
+PostUp = wg set %i private-key /etc/wireguard/%i.key
+Address = {{ lookup('env', 'WG_IP') }}
+ListenPort = {{ lookup('env', 'WG_PORT') }}
+
+[Peer]
+# home site
+PublicKey = {{ lookup('env', 'WG_HOME_PUBLIC_KEY') }}
+AllowedIPs = {{ lookup('env', 'WG_HOME_ENDPOINT') }}
+Endpoint = {{ lookup('env', 'WG_HOME_ENDPOINT') }}:{{ lookup('env', 'WG_PORT') }}

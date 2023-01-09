@@ -163,5 +163,14 @@ jobs:
         AWS_ACCESS_KEY_ID_ADMIN_ROLE: ${{ secrets.AWS_ACCESS_KEY_ID_ADMIN_ROLE }}
         AWS_SECRET_ACCESS_KEY_ADMIN_ROLE: ${{ secrets.AWS_SECRET_ACCESS_KEY_ADMIN_ROLE }}
         ADMIN_ROLE_ARN: ${{ secrets.ADMIN_ROLE_ARN }}
+        WG_HOME_PUBLIC_KEY: ${{ secrets.WG_HOME_PUBLIC_KEY }}
+        WG_PRIVATE_KEY: ${{ secrets.WG_PRIVATE_KEY }}
+        WG_PUBLIC_KEY: ${{ secrets.WG_PUBLIC_KEY }}
+        WG_HOME_ALLOWED_IPS: ${{ secrets.WG_HOME_ALLOWED_IPS }}
+        WG_HOME_ENDPOINT: ${{ secrets.WG_HOME_ENDPOINT }}
+        WG_IP: ${{ secrets.WG_IP }}
+        WG_PORT: ${{ secrets.WG_PORT }}
+
+
       run: |
         ansible-playbook gatewise-playbook.yaml --private-key id_rsa
