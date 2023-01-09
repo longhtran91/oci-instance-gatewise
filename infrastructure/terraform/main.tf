@@ -48,7 +48,7 @@ data "aws_route53_zone" "selected" {
 resource "aws_route53_record" "gatewise" {
   zone_id = data.aws_route53_zone.selected.zone_id
   name    = regex("^(?:(?P<record>[^\\.]+))?(?:.(?P<domain>[^/?#]*))?", var.hostname).record
-  type    = "A"
+  type    = "CNAME"
   ttl     = 300
   records = ["lb.lhtran.com"]
 }
