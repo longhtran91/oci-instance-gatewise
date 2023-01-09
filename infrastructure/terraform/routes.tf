@@ -14,7 +14,7 @@ resource "oci_core_route_table" "home_vpn_routes" {
     }
 
     route_rules {
-        network_entity_id = data.oci_core_private_ips.ocipl_app_gatewise.private_ips[0].ip_address
+        network_entity_id = data.oci_core_private_ips.ocipl_app_gatewise.private_ips[0].id
         destination = "1.1.1.1/32"
         destination_type = "CIRD_BLOCK"
     }
