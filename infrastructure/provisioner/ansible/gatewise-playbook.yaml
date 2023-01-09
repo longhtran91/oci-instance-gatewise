@@ -63,11 +63,13 @@
     apt:
       pkg:
       - wireguard
-  - name: config aws default profile with admin role arn
+  - name: build all wireguard files from templates
     template:
-      src: ./templates/wireguard/
-      dest: /etc/wireguard/
+      src: "{{ item }}"
+      dest: /etc/wireguard/{{ item | basename | regex_replace('\.j2$', '') }}
       mode: '600'
+    with_fileglob:
+    - ./templates/wireguard/*.j
 
 - name: 'Config host'
   hosts: all
