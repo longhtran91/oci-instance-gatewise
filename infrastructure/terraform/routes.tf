@@ -13,11 +13,11 @@ resource "oci_core_route_table" "home_vpn_routes" {
         "terraformed": "Please do not edit manually"
     }
 
-    # route_rules {
-    #     network_entity_id = data.oci_core_private_ips.ocipl_app_gatewise.id
-    #     destination = "1.1.1.1/32"
-    #     destination_type = "CIRD_BLOCK"
-    # }
+    route_rules {
+        network_entity_id = data.oci_core_private_ips.ocipl_app_gatewise.private_ips[0].ip_address
+        destination = "1.1.1.1/32"
+        destination_type = "CIRD_BLOCK"
+    }
 
     # dynamic "route_rules"  {
     #   for_each = var.home_vpn_cidrs
@@ -27,4 +27,8 @@ resource "oci_core_route_table" "home_vpn_routes" {
     #     destination = route_rules.value
     #   }
     # }
+}
+
+output test {
+  value = data.oci_core_private_ips.ocipl_app_gatewise
 }
