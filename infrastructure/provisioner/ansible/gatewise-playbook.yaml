@@ -70,6 +70,11 @@
       mode: '600'
     with_fileglob:
     - ./templates/wireguard/*.j2
+  - name: enable and start wireguard interface wgA
+    service:
+      name: wg-quick@wgA
+      state: started
+      enabled: true
 
 - name: 'Config host'
   hosts: all

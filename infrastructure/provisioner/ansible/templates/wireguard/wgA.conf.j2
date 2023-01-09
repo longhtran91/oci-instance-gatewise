@@ -6,5 +6,5 @@ ListenPort = {{ lookup('env', 'WG_PORT') }}
 [Peer]
 # home site
 PublicKey = {{ lookup('env', 'WG_HOME_PUBLIC_KEY') }}
-AllowedIPs = {{ lookup('env', 'WG_HOME_ENDPOINT') }}
+AllowedIPs = {{ lookup('env', 'WG_HOME_ALLOWED_IPS') }}
 Endpoint = {{ lookup('env', 'WG_HOME_ENDPOINT') }}:{{ lookup('env', 'WG_PORT') }}
