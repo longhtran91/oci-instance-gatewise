@@ -24,6 +24,7 @@ module "gatewise_instance" {
   ad_number             = 1 # AD number to provision instances. If null, instances are provisionned in a rolling manner starting with AD1
   compartment_ocid      = var.compartment_id
   instance_display_name = "ocipl-app-gatewise"
+  skip_source_dest_check = true
   source_ocid           = data.oci_core_images.ubuntu_aarch64.images[0].id
   subnet_ocids          = [for i in data.oci_core_subnets.public_subnets.subnets : i.id if startswith(i.display_name, "public")]
   public_ip             = "RESERVED"
