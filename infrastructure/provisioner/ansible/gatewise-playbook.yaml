@@ -69,7 +69,7 @@
       dest: /etc/wireguard/{{ item | basename | regex_replace('\.j2$', '') }}
       mode: '600'
     with_fileglob:
-    - ./templates/wireguard/*.j
+    - ./templates/wireguard/*.j2
 
 - name: 'Config host'
   hosts: all
