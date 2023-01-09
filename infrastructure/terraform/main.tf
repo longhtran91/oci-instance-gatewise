@@ -26,7 +26,7 @@ module "gatewise_instance" {
   instance_display_name = "ocipl-app-gatewise"
   source_ocid           = data.oci_core_images.ubuntu_aarch64.images[0].id
   subnet_ocids          = [for i in data.oci_core_subnets.public_subnets.subnets : i.id if startswith(i.display_name, "public")]
-  public_ip             = "EPHEMERAL"
+  public_ip             = "RESERVED"
   ssh_public_keys       = var.public_key
   #block_storage_sizes_in_gbs = [50]
   shape                       = var.shape
