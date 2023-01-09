@@ -3,8 +3,8 @@ data "oci_core_private_ips" "ocipl_app_gatewise" {
 }
 
 resource "oci_core_route_table" "home_vpn_routes" {
-    compartment_id = var.compartment_id
-    vcn_id = data.oci_core_vcns.lhtran_vcn.virtual_networks[0].id
+  compartment_id = var.compartment_id
+  vcn_id         = data.oci_core_vcns.lhtran_vcn.virtual_networks[0].id
 
     display_name = "home_vpn_routes"
     freeform_tags   = {
@@ -13,11 +13,11 @@ resource "oci_core_route_table" "home_vpn_routes" {
         "terraformed": "Please do not edit manually"
     }
 
-    route_rules {
-        network_entity_id = data.oci_core_private_ips.ocipl_app_gatewise.id
-        destination = "1.1.1.1/32"
-        destination_type = "CIRD_BLOCK"
-    }
+    # route_rules {
+    #     network_entity_id = data.oci_core_private_ips.ocipl_app_gatewise.id
+    #     destination = "1.1.1.1/32"
+    #     destination_type = "CIRD_BLOCK"
+    # }
 
     # dynamic "route_rules"  {
     #   for_each = var.home_vpn_cidrs
