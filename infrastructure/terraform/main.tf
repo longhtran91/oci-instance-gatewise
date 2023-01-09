@@ -50,5 +50,5 @@ resource "aws_route53_record" "gatewise" {
   name    = regex("^(?:(?P<record>[^\\.]+))?(?:.(?P<domain>[^/?#]*))?", var.hostname).record
   type    = "A"
   ttl     = 300
-  records = tolist(module.gatewise_instance.public_ip)
+  records = ["lb.lhtran.com"]
 }
