@@ -16,7 +16,7 @@ resource "oci_core_route_table" "home_vpn_routes" {
     dynamic "route_rules"  {
       for_each = var.home_vpn_cidrs
       content {
-        network_entity_id = data.oci_core_private_ips.ocipl_app_gatewise.id
+        network_entity_id = data.oci_core_private_ips.ocipl_app_gatewise.private_ips[0].id
         destination_type = "CIDR_BLOCK"
         destination = route_rules.value
       }
