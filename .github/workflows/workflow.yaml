@@ -125,7 +125,7 @@ jobs:
         role-duration-seconds: 3600
 
     - name: Save instance public ip to aws config
-      run: aws ssm put-parameter --name /gatewise/public_ip --type String --value $(terraform output instance_public_ip)
+      run:  aws ssm put-parameter --name /gatewise/public_ip --overwrite --type String --value $(terraform output -raw instance_public_ip)
 
   ansible:
     needs: [build_docker_image, terraform]
