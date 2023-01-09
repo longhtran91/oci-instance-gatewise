@@ -18,17 +18,17 @@ data "oci_core_images" "ubuntu_aarch64" {
 }
 
 module "gatewise_instance" {
-  source                = "oracle-terraform-modules/compute-instance/oci"
-  version               = ">=2.4"
-  instance_count        = 1 # how many instances do you want?
-  ad_number             = 1 # AD number to provision instances. If null, instances are provisionned in a rolling manner starting with AD1
-  compartment_ocid      = var.compartment_id
-  instance_display_name = "ocipl-app-gatewise"
+  source                 = "oracle-terraform-modules/compute-instance/oci"
+  version                = ">=2.4"
+  instance_count         = 1 # how many instances do you want?
+  ad_number              = 1 # AD number to provision instances. If null, instances are provisionned in a rolling manner starting with AD1
+  compartment_ocid       = var.compartment_id
+  instance_display_name  = "ocipl-app-gatewise"
   skip_source_dest_check = true
-  source_ocid           = data.oci_core_images.ubuntu_aarch64.images[0].id
-  subnet_ocids          = [for i in data.oci_core_subnets.public_subnets.subnets : i.id if startswith(i.display_name, "public")]
-  public_ip             = "RESERVED"
-  ssh_public_keys       = var.public_key
+  source_ocid            = data.oci_core_images.ubuntu_aarch64.images[0].id
+  subnet_ocids           = [for i in data.oci_core_subnets.public_subnets.subnets : i.id if startswith(i.display_name, "public")]
+  public_ip              = "RESERVED"
+  ssh_public_keys        = var.public_key
   #block_storage_sizes_in_gbs = [50]
   shape                       = var.shape
   instance_flex_ocpus         = var.shape_ocpus
@@ -51,4 +51,8 @@ resource "aws_route53_record" "gatewise" {
   type    = "CNAME"
   ttl     = 300
   records = ["lb.lhtran.com"]
+}
+
+output "instance_public_ip" {
+  value = module.gatewise_instance.public_ip[0]
 }
