@@ -80,3 +80,7 @@ variable "hostname" {
   type        = string
   description = "Domain on Route53"
 }
+variable "home_vpn_cidrs" {
+  type        = list(string)
+  description = "VCN Cidrs"
+}
