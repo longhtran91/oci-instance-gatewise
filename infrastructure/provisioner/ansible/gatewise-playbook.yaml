@@ -79,10 +79,6 @@
 - name: 'Config host'
   hosts: all
   tasks:
-  - name: copy nginx template
-    copy:
-      src: ../nginx/
-      dest: ~/gatewise/nginx/templates/
   - name: copy docker-compose
     copy:
       src: ../run-docker/
